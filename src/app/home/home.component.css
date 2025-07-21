@@ -1,0 +1,9 @@
+p.placeholder {
+  color: rgba(106, 47, 170, 0.674);
+  font-style: normal;
+  font-weight: lighter;
+  font-size: x-small;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 20px;
+}
