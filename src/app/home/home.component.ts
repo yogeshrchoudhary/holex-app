@@ -35,4 +35,16 @@ export class HomeComponent {
   generateLogoUrl(holiday: IHoliday): string {
     return `https://picsum.photos/seed/${holiday.date.getDay()}/75/75`;
   }
+
+  addRandomHoliday(): void {
+    var randomYear = Math.floor(Math.random() * (2025 - 2020 + 1)) + 2020;
+
+    const newHoliday: IHoliday = {
+      id: this.holidays.length + 1,
+      date: new Date(randomYear, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28)),
+      title: 'Random Holiday ' + (this.holidays.length + 1),
+      description: 'Description of the new holiday ' + (this.holidays.length + 1),
+    };
+    this.holidays.push(newHoliday);
+  }
 }
