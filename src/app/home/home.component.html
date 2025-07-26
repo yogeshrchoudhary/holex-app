@@ -7,7 +7,10 @@
       <div class="holiday-details">
         <h1>{{holiday.title}}</h1>
         <div>
-          <p class="holiday-date">{{holiday.date | date: 'dd MMM yyyy'}}</p>
+          <p>
+            <span class="holiday-date" >{{holiday.date | date: 'dd MMM yyyy'}}</span>
+            <span class="holiday-future" *ngIf="isHolidayInFuture(holiday)">[Needs planning]</span>
+          </p>
           <p class="holiday-description">{{holiday.description}}</p>
         </div>
       </div>

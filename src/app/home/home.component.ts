@@ -37,7 +37,7 @@ export class HomeComponent {
   }
 
   addRandomHoliday(): void {
-    var randomYear = Math.floor(Math.random() * (2025 - 2020 + 1)) + 2020;
+    var randomYear = Math.floor(Math.random() * (2028 - 2020 + 1)) + 2020;
 
     const newHoliday: IHoliday = {
       id: this.holidays.length + 1,
@@ -47,4 +47,9 @@ export class HomeComponent {
     };
     this.holidays.push(newHoliday);
   }
+
+  isHolidayInFuture(holiday: IHoliday): boolean {
+    return (holiday.date > new Date(Date.now()));
+  }
+
 }

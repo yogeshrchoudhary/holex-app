@@ -44,3 +44,10 @@ h1 {
   font-weight:lighter;
   font-size: 0.6em;
 }
+
+.holiday-future {
+  color: #ff0000;
+  font-weight: lighter;
+  font-size: 0.6em;
+  font-style: italic;
+}
