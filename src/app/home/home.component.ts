@@ -24,7 +24,7 @@ export class HomeComponent {
       id: 1,
       date: new Date('2025-05-22'),
       description: 'Lulworth Cove, Dorset and the Jurassic Coast World Heritage Site'
-    },  
+    },
     {
       title: 'Cotswolds',
       id: 2,
@@ -42,6 +42,14 @@ export class HomeComponent {
       description: 'Description of the new holiday ' + (this.holidays.length + 1),
     };
     this.holidays.push(newHoliday);
+  }
+
+  onHolidayDelete(holiday: IHoliday) {
+    const index = this.holidays.findIndex(h => h.id === holiday.id);
+    if (index > -1) {
+      this.holidays.splice(index, 1);
+    }
+    console.log(`Holiday with ID ${holiday.id} deleted.`);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IHoliday } from '../home/holiday.model';
 import { CommonModule } from '@angular/common';
 
@@ -10,11 +10,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './holiday-item.component.css'
 })
 export class HolidayItemComponent {
-
   @Input() holidayItem!: IHoliday;
+  @Output() deleteHoliday = new EventEmitter();
 
   generateLogoUrl(holiday: IHoliday): string {
-    if(this.isHolidayInFuture(holiday)) {
+    if (this.isHolidayInFuture(holiday)) {
       return `https://picsum.photos/seed/${holiday.date.getDay()}/75/75`;
     }
     else {
@@ -42,6 +42,10 @@ export class HolidayItemComponent {
       color = "green"; // Highlight Christmas in green
     }
     return { color: color, fontWeight: 'bolder' };
-  }  
+  }
+
+  onHolidayDelete() {
+    this.deleteHoliday.emit();
+  }
 
 }

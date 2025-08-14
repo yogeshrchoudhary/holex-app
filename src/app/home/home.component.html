@@ -2,6 +2,9 @@
 <button class="btn btn-primary" (click)="addRandomHoliday()">Add a Holiday</button>
 <ul>
   <li class="holiday-item" *ngFor="let holiday of holidays">
-    <hol-holiday-item [holidayItem]="holiday"></hol-holiday-item>
+    <hol-holiday-item 
+      [holidayItem]="holiday"
+      (deleteHoliday)="onHolidayDelete(holiday)">
+    </hol-holiday-item>
   </li>
 </ul>
