@@ -33,6 +33,7 @@ img {
 
 h1 {
   color: #6a2faa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.5em;
   text-align: left;
   padding: 1px;
@@ -51,3 +52,22 @@ h1 {
   font-size: 0.6em;
   font-style: italic;
 }
+
+.highlighted-date {
+  background-color: gold;
+  border: 2px solid darkred;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #6f0384;
+  color: gold;
+  font-weight: bolder;
+  border: none;
+  margin: 10px 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+

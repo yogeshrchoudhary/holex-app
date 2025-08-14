@@ -33,7 +33,12 @@ export class HomeComponent {
 
 
   generateLogoUrl(holiday: IHoliday): string {
-    return `https://picsum.photos/seed/${holiday.date.getDay()}/75/75`;
+    if(this.isHolidayInFuture(holiday)) {
+      return `https://picsum.photos/seed/${holiday.date.getDay()}/75/75`;
+    }
+    else {
+      return `images/holex-logo-1.jpg`;
+    }
   }
 
   addRandomHoliday(): void {
@@ -52,4 +57,11 @@ export class HomeComponent {
     return (holiday.date > new Date(Date.now()));
   }
 
+  getClassForDate(holiday: IHoliday): string[] {
+    var currentDate = new Date(Date.now());
+    if (holiday.date > currentDate) {
+      return ['holiday-future', 'highlighted-date'];
+    }
+    return ['holiday-date'];
+  }
 }
