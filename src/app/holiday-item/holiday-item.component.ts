@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IHoliday } from '../home/holiday.model';
+import { IHoliday } from '../models/holiday.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
