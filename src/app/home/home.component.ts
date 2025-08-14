@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { IHoliday } from './holiday.model';
 import { CommonModule } from '@angular/common';
+import { HolidayItemComponent } from "../holiday-item/holiday-item.component";
 
 @Component({
   selector: 'hol-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HolidayItemComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -31,16 +32,6 @@ export class HomeComponent {
       description: 'Lovely vilages of Bourton-on-the-Water, Cotswolds and Moreton-in-Marsh Market Town',
     }];
 
-
-  generateLogoUrl(holiday: IHoliday): string {
-    if(this.isHolidayInFuture(holiday)) {
-      return `https://picsum.photos/seed/${holiday.date.getDay()}/75/75`;
-    }
-    else {
-      return `images/holex-logo-1.jpg`;
-    }
-  }
-
   addRandomHoliday(): void {
     var randomYear = Math.floor(Math.random() * (2028 - 2020 + 1)) + 2020;
 
@@ -53,25 +44,4 @@ export class HomeComponent {
     this.holidays.push(newHoliday);
   }
 
-  isHolidayInFuture(holiday: IHoliday): boolean {
-    return (holiday.date > new Date(Date.now()));
-  }
-
-  getClassForDate(holiday: IHoliday): string[] {
-    var currentDate = new Date(Date.now());
-    if (holiday.date > currentDate) {
-      return ['holiday-future', 'highlighted-date'];
-    }
-    return ['holiday-date'];
-  }
-
-  getStyleForDate(holiday: IHoliday): any {
-    var color = "navy";
-    if (holiday.date.getDay() === 0 || holiday.date.getDay() === 6) {
-      color = "red"; // Highlight weekends in red
-    } else if (holiday.date.getMonth() === 11 && holiday.date.getDate() === 25) {
-      color = "green"; // Highlight Christmas in green
-    }
-    return { color: color, fontWeight: 'bolder' };
-  }  
 }

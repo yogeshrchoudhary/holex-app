@@ -1,0 +1,17 @@
+<div class="holiday-item">
+    <img [src]="generateLogoUrl(holidayItem)" [alt]="holidayItem.title" />
+    <div class="holiday-details">
+    <h1>{{holidayItem.title}}</h1>
+    <div>
+        <p>
+        <span 
+            [ngStyle]="getStyleForDate(holidayItem)"
+            class="holiday-date" [ngClass]="getClassForDate(holidayItem)">
+            {{holidayItem.date | date: 'dd MMM yyyy'}}
+        </span>
+        <span class="holiday-future" *ngIf="isHolidayInFuture(holidayItem)">[Needs planning]</span>
+        </p>
+        <p class="holiday-description">{{holidayItem.description}}</p>
+    </div>
+    </div>
+</div>
