@@ -64,4 +64,14 @@ export class HomeComponent {
     }
     return ['holiday-date'];
   }
+
+  getStyleForDate(holiday: IHoliday): any {
+    var color = "navy";
+    if (holiday.date.getDay() === 0 || holiday.date.getDay() === 6) {
+      color = "red"; // Highlight weekends in red
+    } else if (holiday.date.getMonth() === 11 && holiday.date.getDate() === 25) {
+      color = "green"; // Highlight Christmas in green
+    }
+    return { color: color, fontWeight: 'bolder' };
+  }  
 }

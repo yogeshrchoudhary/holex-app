@@ -8,7 +8,11 @@
         <h1>{{holiday.title}}</h1>
         <div>
           <p>
-            <span class="holiday-date" [ngClass]="getClassForDate(holiday)">{{holiday.date | date: 'dd MMM yyyy'}}</span>
+            <span 
+              [ngStyle]="getStyleForDate(holiday)"
+              class="holiday-date" [ngClass]="getClassForDate(holiday)">
+                {{holiday.date | date: 'dd MMM yyyy'}}
+            </span>
             <span class="holiday-future" *ngIf="isHolidayInFuture(holiday)">[Needs planning]</span>
           </p>
           <p class="holiday-description">{{holiday.description}}</p>
