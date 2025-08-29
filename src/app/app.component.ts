@@ -7,7 +7,11 @@ import { ExpenseDayComponent } from "./expense-day/expense-day.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, BannerComponent, ExpenseDayComponent],
+  imports: [
+    RouterOutlet,
+    HomeComponent, 
+    BannerComponent, 
+    ExpenseDayComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

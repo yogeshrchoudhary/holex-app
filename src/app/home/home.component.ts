@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IHoliday } from '../models/holiday.model';
 import { CommonModule } from '@angular/common';
 import { HolidayItemComponent } from "../holiday-item/holiday-item.component";
 import { HolidayItemsService } from '../services/holiday-items/holiday-items.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'hol-home',
@@ -11,23 +12,29 @@ import { HolidayItemsService } from '../services/holiday-items/holiday-items.ser
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  private _holidayItemsService: HolidayItemsService;
+export class HomeComponent implements OnInit {
+  holidays: IHoliday[] = [];
 
-  holidays: IHoliday[];
+  constructor(private holidayItemsService: HolidayItemsService) { }
 
-  constructor(holidayItemsService: HolidayItemsService) {
-    this._holidayItemsService = holidayItemsService;
-    this.holidays = this._holidayItemsService.getHolidays();
+  ngOnInit(): void {
+    this.updateHolidays();
+  }
+
+  private updateHolidays() {
+    this.holidayItemsService.fetch()
+      .subscribe(data => {
+        this.holidays = data;
+    });
   }
 
   addRandomHoliday(): void {
-    this._holidayItemsService.addTestHoliday();
-    this.holidays = this._holidayItemsService.getHolidays();
+    this.holidayItemsService.createTestHoliday();
+    this.holidays = this.holidayItemsService.getHolidays();
   }
 
   onHolidayDelete(holiday: IHoliday) {
-    this._holidayItemsService.removeHoliday(holiday);
-    this.holidays = this._holidayItemsService.getHolidays();
+    this.holidayItemsService.removeHoliday(holiday);
+    this.holidays = this.holidayItemsService.getHolidays();
   }
 }
