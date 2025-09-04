@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IHoliday } from '../../models/holiday.model';
+import { IHoliday, IHolidayResponse } from '../../models/holiday.model';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
@@ -13,17 +13,22 @@ export class HolidayItemsService {
   private API_URL: string = '/api/v1/holiday-items';
 
   fetch(): Observable<IHoliday[]> {
-      return this.http.get<IHoliday[]>(this.API_URL)
-                .pipe(
-                  map(holidays => holidays.map(h => ({
-                    id: h.id,
-                    title: h.title,
-                    date: new Date(h.date),
-                    description: h.description
-                  })))
-                );    
+    let httpResponseObservable = this.http.get<IHolidayResponse[]>(this.API_URL);
+
+    // Transform the response to match IHoliday interface
+    let result = httpResponseObservable.pipe<IHoliday[]>( map((data: IHolidayResponse[]) => {
+                                                            var holidays: IHoliday[] = data.map(item => ({
+                                                              id: item.Id,
+                                                              date: new Date(item.Date),
+                                                              title: item.Name,
+                                                              description: item.Description
+                                                            }));
+                                                            return holidays;
+                                                          })); 
+                                                              
+    return result;
   }
-  
+
   getHolidays(): IHoliday[] {
     return this.holidays;
   }

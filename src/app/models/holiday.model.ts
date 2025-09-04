@@ -5,3 +5,10 @@ export interface IHoliday {
     description: string;
     imageUrl?: string;
 }
+
+export interface IHolidayResponse {
+    Id: number;
+    Date: string; // ISO string from backend
+    Name: string;
+    Description: string;
+}
