@@ -53,6 +53,7 @@ export class HolidayItemsService {
     };
   
     this.http.post<IHoliday>(this.API_URL, newHolidayDto).subscribe({});
+    console.log(`New Holiday '${newHoliday.title}' added.`);
   }
 
   removeHoliday(holiday: IHoliday): void {
@@ -60,6 +61,8 @@ export class HolidayItemsService {
     if (index > -1) {
       this.holidays.splice(index, 1);
     }
+
+    this.http.delete(`${this.API_URL}/${holiday.id}`).subscribe({});
     console.log(`Holiday with ID ${holiday.id} deleted.`);
   }
 
