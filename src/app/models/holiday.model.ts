@@ -6,7 +6,7 @@ export interface IHoliday {
     imageUrl?: string;
 }
 
-export interface IHolidayResponse {
+export interface IHolidayDto {
     Id: number;
     Date: string; // ISO string from backend
     Name: string;

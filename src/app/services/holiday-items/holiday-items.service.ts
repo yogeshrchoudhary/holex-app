@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IHoliday, IHolidayResponse } from '../../models/holiday.model';
+import { IHoliday, IHolidayDto } from '../../models/holiday.model';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
@@ -13,16 +13,17 @@ export class HolidayItemsService {
   private API_URL: string = '/api/v1/holiday-items';
 
   fetch(): Observable<IHoliday[]> {
-    let httpResponseObservable = this.http.get<IHolidayResponse[]>(this.API_URL);
+    let httpResponseObservable = this.http.get<IHolidayDto[]>(this.API_URL);
 
     // Transform the response to match IHoliday interface
-    let result = httpResponseObservable.pipe<IHoliday[]>( map((data: IHolidayResponse[]) => {
+    let result = httpResponseObservable.pipe<IHoliday[]>( map((data: IHolidayDto[]) => {
                                                             var holidays: IHoliday[] = data.map(item => ({
                                                               id: item.Id,
                                                               date: new Date(item.Date),
                                                               title: item.Name,
                                                               description: item.Description
                                                             }));
+                                                            this.holidays = holidays;
                                                             return holidays;
                                                           })); 
                                                               
@@ -33,7 +34,7 @@ export class HolidayItemsService {
     return this.holidays;
   }
 
-  createTestHoliday(): Observable<IHoliday> {
+  createTestHoliday(): void {
     var randomYear = Math.floor(Math.random() * (2028 - 2020 + 1)) + 2020;
 
     const newHoliday: IHoliday = {
@@ -44,8 +45,14 @@ export class HolidayItemsService {
     };
     this.holidays.push(newHoliday);
 
-    // DOESN'T WORK - BACKEND NOT IMPLEMENTED YET
-    return this.http.post<IHoliday>(this.API_URL, newHoliday);
+    const newHolidayDto: IHolidayDto = {
+      Id: newHoliday.id,
+      Date: newHoliday.date.toISOString(),
+      Name: newHoliday.title,
+      Description: newHoliday.description
+    };
+  
+    this.http.post<IHoliday>(this.API_URL, newHolidayDto).subscribe({});
   }
 
   removeHoliday(holiday: IHoliday): void {
