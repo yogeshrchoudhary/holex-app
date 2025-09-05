@@ -52,8 +52,9 @@ export class HolidayItemsService {
       Description: newHoliday.description
     };
   
-    this.http.post<IHoliday>(this.API_URL, newHolidayDto).subscribe({});
-    console.log(`New Holiday '${newHoliday.title}' added.`);
+    this.http.post<IHoliday>(this.API_URL, newHolidayDto).subscribe({
+      next: (data) => { console.log(`New Holiday '${newHoliday.title}' added.`); }
+    });
   }
 
   removeHoliday(holiday: IHoliday): void {
@@ -62,8 +63,9 @@ export class HolidayItemsService {
       this.holidays.splice(index, 1);
     }
 
-    this.http.delete(`${this.API_URL}/${holiday.id}`).subscribe({});
-    console.log(`Holiday with ID ${holiday.id} deleted.`);
+    this.http.delete(`${this.API_URL}/${holiday.id}`).subscribe({
+      next: (data) => { console.log(`Holiday with ID ${holiday.id} deleted from server.`); },
+    });
   }
 
 }
