@@ -52,3 +52,13 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.btn.btn-primary {
+  margin-left: 10px;
+  background-color: #4d79ff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

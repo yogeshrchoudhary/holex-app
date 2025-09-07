@@ -12,7 +12,8 @@
             </p>
             <p class="holiday-description">{{holidayItem.description}}</p>
             <div class="holiday-actions d-flex justify-content-between">
-                <button class="btn btn-danger" (click)="onHolidayDelete()">Delete</button>
+                <button class="btn btn-danger btn-action" (click)="onHolidayDelete()">Delete</button>
+                <button [routerLink]="['/expenses']" class="btn btn-primary btn-action">Expenses</button>
             </div>
         </div>
     </div>

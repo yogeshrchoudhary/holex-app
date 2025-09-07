@@ -11,13 +11,18 @@ import { IExpenseItem } from './expense-item.model';
 })
 export class ExpenseDayComponent {
   expenses: IExpenseItem[] = []; // Array to hold expense items
-  expenseDayDate: string = new Date().toDateString(); // Default to today's date
-
+  fromDate: string = '';
+  toDate: string = '';
+  holidayTitle: string = "Holiday Expenses"; // Example holiday title
+  
   constructor() {
     // Initialize or fetch expenses data here
     this.expenses = [
-      { id: '1', date: '2023-10-01', description: 'Lunch', amount: 15.00 },
-      { id: '2', date: '2023-10-02', description: 'Transport', amount: 5.00 }
+      { id: '1', date: '2023-10-01', description: 'Lunch', amount: 15.00, currency: 'GBP' },
+      { id: '2', date: '2023-10-02', description: 'Transport', amount: 5.00, currency: 'GBP' },
     ];
+
+    this.fromDate = new Date(this.expenses[0].date).toDateString();
+    this.toDate = new Date(this.expenses[this.expenses.length - 1].date).toDateString();
   }
 }

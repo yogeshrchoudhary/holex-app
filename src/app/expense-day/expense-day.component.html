@@ -1,8 +1,14 @@
 <div class="expense-day">
-  <h2>{{ expenseDayDate }}</h2>
+  <h2>{{ holidayTitle }}</h2>
+  <span class="subheader">({{ fromDate }} to {{ toDate }})</span>
     <ul>
         <li *ngFor="let expense of expenses">
-          {{ expense.description }} - {{ expense.amount | currency }}
+          <strong>{{ expense.date }}:</strong>
+          <ol>
+            <li>
+              {{ expense.description }} - {{ expense.amount | currency: expense.currency:'symbol':'1.2-2':'en-GB' }}
+            </li>
+          </ol>
         </li>
     </ul>
 </div>

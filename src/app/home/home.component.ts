@@ -3,7 +3,6 @@ import { IHoliday } from '../models/holiday.model';
 import { CommonModule } from '@angular/common';
 import { HolidayItemComponent } from "../holiday-item/holiday-item.component";
 import { HolidayItemsService } from '../services/holiday-items/holiday-items.service';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'hol-home',
